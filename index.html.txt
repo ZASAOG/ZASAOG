@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZASA - Zanzibar Aerospace Students Association</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: #f4f6f9;
+    color: #333;
+}
+
+header {
+    background: #0b2c5f;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+header img {
+    width: 120px;
+}
+
+nav {
+    background: #ff6b00;
+    padding: 10px;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    margin: 10px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+section {
+    padding: 40px;
+    max-width: 1000px;
+    margin: auto;
+}
+
+h2 {
+    color: #0b2c5f;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    margin: 15px 0;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+footer {
+    background: #0b2c5f;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+.qr {
+    margin-top: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <img src="logo.png" alt="ZASA Logo">
+    <h1>ZANZIBAR AEROSPACE STUDENTS ASSOCIATION (ZASA)</h1>
+    <p>The Fewer, The Proud ✈️</p>
+</header>
+
+<nav>
+    <a href="#about">Kuhusu</a>
+    <a href="#goals">Malengo</a>
+    <a href="#rules">Masharti</a>
+    <a href="#constitution">Katiba</a>
+    <a href="#join">Jiunge</a>
+    <a href="#contact">Mawasiliano</a>
+</nav>
+
+<section id="about">
+    <div class="card">
+        <h2>Kuhusu ZASA</h2>
+        <p>ZASA ni muungano wa wanafunzi wanaopenda na kusoma masuala ya anga kama aviation, aeronautics na aerospace.</p>
+    </div>
+</section>
+
+<section id="goals">
+    <div class="card">
+        <h2>Malengo</h2>
+        <ul>
+            <li>Kukuza elimu ya anga</li>
+            <li>Kutoa mafunzo na warsha</li>
+            <li>Kujenga mtandao wa wanafunzi na wataalamu</li>
+            <li>Kuhamasisha usalama wa anga</li>
+        </ul>
+    </div>
+</section>
+
+<section id="rules">
+    <div class="card">
+        <h2>Masharti & Kanuni</h2>
+        <ul>
+            <li>Kuwa mwanafunzi halali</li>
+            <li>Kuheshimu katiba ya ZASA</li>
+            <li>Kulipa ada (kama itawekwa)</li>
+            <li>Kushiriki shughuli za chama</li>
+        </ul>
+    </div>
+</section>
+
+<section id="constitution">
+    <div class="card">
+        <h2>Katiba ya ZASA</h2>
+        <a href="katiba.pdf" target="_blank">📄 Pakua Katiba (PDF)</a>
+    </div>
+</section>
+
+<section id="join">
+    <div class="card">
+        <h2>Fomu ya Kujiunga</h2>
+        <a href="fomu.pdf" target="_blank">📝 Pakua Fomu (PDF)</a>
+    </div>
+</section>
+
+<section id="contact">
+    <div class="card">
+        <h2>Mawasiliano</h2>
+        <p>Simu: <b>0714 095 979</b></p>
+        <p>Email: zasa.aerospace@gmail.com</p>
+        <p>Mahali: Zanzibar, Tanzania</p>
+
+        <div class="qr">
+            <p>Scan QR kuwasiliana:</p>
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=0714095979">
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>© 2026 ZASA | All Rights Reserved</p>
+</footer>
+
+</body>
+</html>
