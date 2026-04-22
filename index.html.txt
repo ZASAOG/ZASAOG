@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZASA | Aerospace</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* LOADING SCREEN */
+#loader {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: #0b2c5f;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 9999;
+}
+
+.loader-logo {
+    width: 100px;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% {transform: rotate(0deg);}
+    100% {transform: rotate(360deg);}
+}
+
+#loader h2 {
+    margin-top: 10px;
+    color: white;
+}
+
+/* MAIN BODY */
+body {
+    background: linear-gradient(135deg, #0b2c5f, #001f3f);
+    color: white;
+}
+
+/* HEADER */
+header {
+    text-align: center;
+    padding: 30px;
+}
+
+.logo {
+    width: 120px;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0% {transform: translateY(0);}
+    50% {transform: translateY(-10px);}
+    100% {transform: translateY(0);}
+}
+
+h1 {
+    animation: slideUp 1s ease-out;
+}
+
+@keyframes slideUp {
+    from {transform: translateY(40px); opacity: 0;}
+    to {transform: translateY(0); opacity: 1;}
+}
+
+/* NAV */
+nav {
+    text-align: center;
+    margin: 20px;
+}
+
+nav a {
+    margin: 10px;
+    color: #ff9800;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    color: white;
+    transform: scale(1.1);
+}
+
+/* SECTIONS */
+.section {
+    background: rgba(255,255,255,0.1);
+    margin: 20px;
+    padding: 20px;
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+    opacity: 0;
+    transform: translateY(40px);
+    transition: 0.8s;
+}
+
+.section.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* BUTTON */
+.btn {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 20px;
+    background: #ff9800;
+    color: black;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: white;
+    transform: scale(1.05);
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    padding: 20px;
+    background: black;
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOADER -->
+<div id="loader">
+    <img src="logo.png.jpeg" class="loader-logo">
+    <h2>Loading ZASA...</h2>
+</div>
+
+<!-- WEBSITE CONTENT -->
+<header>
+    <img src="logo.png.jpeg" class="logo">
+    <h1>ZANZIBAR AEROSPACE STUDENTS ASSOCIATION</h1>
+    <p>The Fewer, The Proud ✈️</p>
+</header>
+
+<nav>
+    <a href="#about">Kuhusu</a>
+    <a href="#goals">Malengo</a>
+    <a href="#docs">Documents</a>
+    <a href="#contact">Mawasiliano</a>
+</nav>
+
+<section class="section" id="about">
+    <h2>Kuhusu ZASA</h2>
+    <p>ZASA ni muungano wa wanafunzi wa anga Zanzibar.</p>
+</section>
+
+<section class="section" id="goals">
+    <h2>Malengo</h2>
+    <ul>
+        <li>Kukuza elimu ya anga</li>
+        <li>Kutoa mafunzo</li>
+        <li>Kujenga mtandao</li>
+    </ul>
+</section>
+
+<section class="section" id="docs">
+    <h2>Documents</h2>
+    <a href="katiba.pdf.docx" class="btn">Pakua Katiba</a><br>
+    <a href="fomu.pdf.png" class="btn">Pakua Fomu</a>
+</section>
+
+<section class="section" id="contact">
+    <h2>Mawasiliano</h2>
+    <p>📞 0714095979</p>
+    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=0714095979">
+</section>
+
+<footer>
+    <p>© 2026 ZASA</p>
+</footer>
+
+<script>
+// LOADER
+window.addEventListener("load", function(){
+    document.getElementById("loader").style.display = "none";
+});
+
+// SCROLL ANIMATION
+const sections = document.querySelectorAll('.section');
+
+window.addEventListener('scroll', () => {
+    sections.forEach(sec => {
+        const top = window.scrollY;
+        const offset = sec.offsetTop - 300;
+
+        if (top > offset) {
+            sec.classList.add('show');
+        }
+    });
+});
+</script>
+
+</body>
+</html>
