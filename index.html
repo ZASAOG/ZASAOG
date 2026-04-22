@@ -1,4 +1,29 @@
-<!DOCTYPE html>
+<style>
+body {
+    animation: fadeIn 1.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Title animation */
+.hero-title {
+    animation: slideUp 1.2s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(40px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+</style>DOCTYPE html>
 <html lang="sw">
 <head>
 <meta charset="UTF-8">
