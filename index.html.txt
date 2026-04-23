@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZASA - Zanzibar Aerospace Students Association</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #0b1d3a;
+  color: white;
+}
+
+/* LOADER */
+#loader {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: #0b1d3a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+#loader img {
+  width: 120px;
+  animation: spin 2s linear infinite;
+}
+@keyframes spin {
+  100% { transform: rotate(360deg); }
+}
+
+/* HEADER */
+header {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+  background: #102a54;
+}
+
+.lang-btn {
+  cursor: pointer;
+  padding: 8px 12px;
+  background: orange;
+  border: none;
+  color: white;
+}
+
+/* MENU */
+.menu {
+  position: fixed;
+  left: 0;
+  top: 60px;
+  background: #132f5c;
+  width: 200px;
+}
+.menu button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  background: none;
+  color: white;
+  text-align: left;
+  cursor: pointer;
+}
+.content {
+  margin-left: 210px;
+  padding: 20px;
+}
+
+/* SECTIONS */
+.section {
+  display: none;
+}
+.section.active {
+  display: block;
+}
+
+/* FLOAT BUTTONS */
+.float {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.float a {
+  padding: 15px;
+  border-radius: 50%;
+  color: white;
+  text-decoration: none;
+  font-size: 20px;
+}
+.whatsapp { background: green; }
+.ai { background: orange; }
+
+</style>
+</head>
+
+<body>
+
+<!-- LOADER -->
+<div id="loader">
+  <img src="logo.png">
+</div>
+
+<header>
+  <h2>ZASA</h2>
+  <button class="lang-btn" onclick="toggleLang()">EN/SW</button>
+</header>
+
+<div class="menu">
+  <button onclick="showSection('home')">Home</button>
+  <button onclick="showSection('goals')">Malengo</button>
+  <button onclick="showSection('register')">Kujisajili</button>
+  <button onclick="showSection('constitution')">Katiba</button>
+  <button onclick="showSection('contact')">Contact</button>
+</div>
+
+<div class="content">
+
+<div id="home" class="section active">
+<h2>UTANGULIZI</h2>
+<p>Zanzibar Aerospace Students Association (ZASA)...</p>
+
+<h3>DIRA</h3>
+<p>Kuwa taasisi inayoongoza Afrika Mashariki...</p>
+
+<h3>DHIMA</h3>
+<p>Kutoa elimu, hamasa, na fursa...</p>
+</div>
+
+<div id="goals" class="section">
+<ul>
+<li>Kukuza uelewa wa aerospace</li>
+<li>Kutoa mafunzo na semina</li>
+<li>Kuunganisha wanafunzi na wataalamu</li>
+<li>Kuhamasisha ubunifu</li>
+</ul>
+</div>
+
+<div id="register" class="section">
+<h3>Kujisajili</h3>
+<a href="form.pdf" download>📄 Pakua Fomu</a>
+<br><br>
+<p id="maintenance">Huduma ipo kwenye matengenezo</p>
+</div>
+
+<div id="constitution" class="section">
+<a href="katiba.pdf" download>📄 Download Katiba</a>
+</div>
+
+<div id="contact" class="section">
+<p>📞 0714095979</p>
+</div>
+
+</div>
+
+<!-- FLOAT BUTTONS -->
+<div class="float">
+  <a href="https://wa.me/255714095979" class="whatsapp">💬</a>
+  <a href="#" class="ai" onclick="alert('AI Help coming soon')">🤖</a>
+</div>
+
+<script>
+// LOADER
+window.onload = () => {
+  document.getElementById("loader").style.display = "none";
+}
+
+// SECTION SWITCH
+function showSection(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+// LANGUAGE TOGGLE
+let lang = "sw";
+function toggleLang() {
+  lang = lang === "sw" ? "en" : "sw";
+
+  document.getElementById("maintenance").innerText =
+    lang === "sw" ? "Huduma ipo kwenye matengenezo" : "Service under maintenance";
+}
+</script>
+
+</body>
+</html>
