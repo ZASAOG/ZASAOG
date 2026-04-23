@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZASA</title>
+
+<style>
+body{
+margin:0;
+font-family:Arial;
+background:#0b2c5f;
+color:white;
+}
+
+/* LOADER */
+#loader{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:#0b2c5f;
+display:flex;
+justify-content:center;
+align-items:center;
+z-index:9999;
+font-size:20px;
+}
+
+/* HEADER */
+header{
+text-align:center;
+padding:20px;
+}
+
+.logo{
+width:90%;
+max-width:400px;
+display:block;
+margin:auto;
+}
+
+/* MENU */
+.menu{
+background:#000;
+padding:10px;
+text-align:center;
+}
+
+.menu a{
+color:white;
+margin:10px;
+cursor:pointer;
+text-decoration:none;
+}
+
+/* SECTION */
+.section{
+display:none;
+padding:20px;
+max-width:800px;
+margin:auto;
+}
+.active{display:block}
+
+/* BUTTON */
+.btn{
+display:inline-block;
+background:#ff9800;
+padding:10px 15px;
+margin-top:10px;
+color:white;
+text-decoration:none;
+border-radius:5px;
+}
+
+/* LANGUAGE */
+.lang{
+position:absolute;
+top:10px;
+right:10px;
+background:#ff9800;
+padding:5px 10px;
+cursor:pointer;
+border-radius:5px;
+}
+
+/* WHATSAPP */
+.whatsapp{
+position:fixed;
+bottom:20px;
+right:20px;
+background:#25D366;
+padding:15px;
+border-radius:50%;
+text-decoration:none;
+color:white;
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOADER -->
+<div id="loader">Loading ZASA...</div>
+
+<div class="lang" onclick="toggleLang()">EN</div>
+
+<header>
+<img src="logo.jpeg" class="logo">
+<h1>ZASA</h1>
+</header>
+
+<div class="menu">
+<a onclick="show('home')" id="navHome"></a>
+<a onclick="show('rules')" id="navRules"></a>
+<a onclick="show('goals')" id="navGoals"></a>
+<a onclick="show('join')" id="navJoin"></a>
+<a onclick="show('contact')" id="navContact"></a>
+</div>
+
+<div id="home" class="section active">
+<h2 id="homeTitle"></h2>
+<p id="homeDesc"></p>
+</div>
+
+<div id="rules" class="section">
+<h2 id="rulesTitle"></h2>
+<ul id="rulesList"></ul>
+</div>
+
+<div id="goals" class="section">
+<h2 id="goalsTitle"></h2>
+<ul id="goalsList"></ul>
+</div>
+
+<!-- JOIN -->
+<div id="join" class="section">
+<h2 id="joinTitle"></h2>
+<p id="joinText"></p>
+
+<a href="fomu.pdf" class="btn" download id="formBtn"></a>
+<a href="katiba.pdf" class="btn" download id="katibaBtn"></a>
+
+</div>
+
+<div id="contact" class="section">
+<h2 id="contactTitle"></h2>
+<p>0714095979</p>
+</div>
+
+<a href="https://wa.me/255714095979" class="whatsapp">💬</a>
+
+<script>
+
+/* LOADER */
+window.onload=function(){
+setTimeout(function(){
+document.getElementById("loader").style.display="none";
+},800);
+};
+
+let lang="sw";
+
+/* DATA */
+const data={
+sw:{
+nav:["Home","Masharti","Malengo","Kujiunga","Mawasiliano"],
+homeTitle:"Kuhusu ZASA",
+homeDesc:"ZASA (Zanzibar Aerospace Student Association) ni taasisi iliyoanzishwa na wanafunzi wa KIST kwa lengo la kuhamasisha vijana kuhusu anga na aerospace.",
+rulesTitle:"Masharti",
+rules:["Kuwa mwanafunzi","Kupenda anga","Kukubali katiba"],
+goalsTitle:"Malengo",
+goals:["Kukuza elimu ya anga","Kuhamasisha vijana","Kutoa mafunzo"],
+joinTitle:"Kujiunga",
+joinText:"Pakua fomu au soma katiba hapa chini:",
+formBtn:"📄 Pakua Fomu",
+katibaBtn:"📘 Pakua Katiba",
+contactTitle:"Mawasiliano"
+},
+en:{
+nav:["Home","Requirements","Goals","Join","Contact"],
+homeTitle:"About ZASA",
+homeDesc:"ZASA is a student organization from KIST inspiring youth in aerospace.",
+rulesTitle:"Requirements",
+rules:["Be a student","Love aerospace","Accept constitution"],
+goalsTitle:"Goals",
+goals:["Promote aerospace education","Inspire youth","Provide training"],
+joinTitle:"Join",
+joinText:"Download form or constitution below:",
+formBtn:"📄 Download Form",
+katibaBtn:"📘 Download Constitution",
+contactTitle:"Contact"
+}
+};
+
+function applyLang(){
+let d=data[lang];
+
+["navHome","navRules","navGoals","navJoin","navContact"]
+.forEach((id,i)=>document.getElementById(id).innerText=d.nav[i]);
+
+document.getElementById("homeTitle").innerText=d.homeTitle;
+document.getElementById("homeDesc").innerText=d.homeDesc;
+
+document.getElementById("rulesTitle").innerText=d.rulesTitle;
+document.getElementById("rulesList").innerHTML=d.rules.map(x=>"<li>"+x+"</li>").join("");
+
+document.getElementById("goalsTitle").innerText=d.goalsTitle;
+document.getElementById("goalsList").innerHTML=d.goals.map(x=>"<li>"+x+"</li>").join("");
+
+document.getElementById("joinTitle").innerText=d.joinTitle;
+document.getElementById("joinText").innerText=d.joinText;
+document.getElementById("formBtn").innerText=d.formBtn;
+document.getElementById("katibaBtn").innerText=d.katibaBtn;
+
+document.getElementById("contactTitle").innerText=d.contactTitle;
+}
+
+function toggleLang(){
+lang = lang==="sw" ? "en":"sw";
+document.querySelector(".lang").innerText = lang==="sw" ? "EN":"SW";
+applyLang();
+}
+
+function show(id){
+document.querySelectorAll(".section").forEach(s=>s.classList.remove("active"));
+document.getElementById(id).classList.add("active");
+}
+
+applyLang();
+
+</script>
+
+</body>
+</html>
