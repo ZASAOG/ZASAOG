@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZASA Official</title>
+
+<style>
+body {
+  margin:0;
+  font-family:'Segoe UI', sans-serif;
+  background:#0b1d3a;
+  color:white;
+}
+
+/* LOADER */
+#loader {
+  position:fixed;
+  width:100%;
+  height:100%;
+  background:#0b1d3a;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  z-index:9999;
+}
+#loader img {
+  width:120px;
+  animation: zoom 1.5s ease-in-out infinite;
+}
+#loader h2 {
+  margin-top:10px;
+  font-size:18px;
+  letter-spacing:2px;
+  animation: fade 2s infinite;
+}
+
+@keyframes zoom {
+  0%{transform:scale(1);}
+  50%{transform:scale(1.2);}
+  100%{transform:scale(1);}
+}
+@keyframes fade {
+  0%{opacity:0.3;}
+  50%{opacity:1;}
+  100%{opacity:0.3;}
+}
+
+/* HEADER */
+header {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:10px 20px;
+  background:rgba(0,0,0,0.6);
+  backdrop-filter: blur(10px);
+}
+
+.logo {
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.logo img {
+  width:40px;
+}
+
+.lang-btn {
+  background:orange;
+  border:none;
+  padding:8px 12px;
+  color:white;
+  cursor:pointer;
+  border-radius:5px;
+}
+
+/* HERO */
+.hero {
+  height:100vh;
+  background:url('hero.jpg') center/cover no-repeat;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.hero-overlay {
+  background:rgba(0,0,0,0.6);
+  padding:40px;
+  border-radius:10px;
+  text-align:center;
+}
+
+.hero img {
+  width:200px;
+  margin-bottom:20px;
+}
+
+/* BUTTON */
+.btn {
+  background:orange;
+  padding:10px 20px;
+  border:none;
+  color:white;
+  cursor:pointer;
+  margin-top:10px;
+  border-radius:5px;
+  transition:0.3s;
+}
+.btn:hover {
+  transform:scale(1.05);
+}
+
+/* SECTION */
+.section {
+  padding:50px 20px;
+}
+
+/* FLOAT */
+.float {
+  position:fixed;
+  bottom:20px;
+  right:20px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOADER -->
+<div id="loader">
+  <img src="logo.png">
+  <h2>ZASA</h2>
+</div>
+
+<header>
+<div class="logo">
+<img src="logo.png">
+<h3>ZASA</h3>
+</div>
+
+<button class="lang-btn" onclick="toggleLang()">EN/SW</button>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+<div class="hero-overlay">
+
+<img src="logo-full.png">
+
+<h1 id="title">Karibu ZASA</h1>
+<p id="subtitle">Innovate. Explore. Elevate.</p>
+
+<button class="btn">Jiunge Sasa</button>
+
+</div>
+</div>
+
+<!-- ABOUT -->
+<div class="section">
+<h2 id="introTitle">UTANGULIZI</h2>
+
+<p id="introText">
+Zanzibar Aerospace Students Association (ZASA) ni taasisi ya wanafunzi iliyoanzishwa KIST kwa lengo la kuhamasisha elimu ya anga.
+</p>
+
+<h3 id="visionTitle">DIRA</h3>
+<p id="visionText">Kuwa taasisi inayoongoza Afrika Mashariki.</p>
+
+<h3 id="missionTitle">DHIMA</h3>
+<p id="missionText">Kutoa elimu na fursa kwa vijana.</p>
+
+</div>
+
+<!-- CONTACT -->
+<div class="section">
+<h2 id="contactTitle">MAWASILIANO</h2>
+<p>📞 0714095979</p>
+</div>
+
+<!-- FLOAT -->
+<div class="float">
+<a href="https://wa.me/255714095979">💬</a>
+</div>
+
+<script>
+
+// LOADER
+window.onload = function(){
+  setTimeout(()=>{
+    document.getElementById("loader").style.display="none";
+  },1500);
+}
+
+// LANGUAGE SWITCH
+let lang="sw";
+
+function toggleLang(){
+  lang = lang==="sw"?"en":"sw";
+
+  if(lang==="en"){
+    title.innerText="Welcome to ZASA";
+    introTitle.innerText="INTRODUCTION";
+    introText.innerText="ZASA is a student organization focused on aerospace education.";
+    visionTitle.innerText="VISION";
+    visionText.innerText="To be a leading aerospace organization in East Africa.";
+    missionTitle.innerText="MISSION";
+    missionText.innerText="To educate and inspire youth in aerospace.";
+    contactTitle.innerText="CONTACT";
+  } else {
+    title.innerText="Karibu ZASA";
+    introTitle.innerText="UTANGULIZI";
+    introText.innerText="ZASA ni taasisi ya wanafunzi iliyoanzishwa KIST.";
+    visionTitle.innerText="DIRA";
+    visionText.innerText="Kuwa taasisi inayoongoza Afrika Mashariki.";
+    missionTitle.innerText="DHIMA";
+    missionText.innerText="Kutoa elimu na fursa kwa vijana.";
+    contactTitle.innerText="MAWASILIANO";
+  }
+}
+
+</script>
+
+</body>
+</html>
