@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZASA Official</title>
+
+<style>
+body {
+  margin:0;
+  font-family:'Segoe UI', sans-serif;
+  background: linear-gradient(135deg,#0b1d3a,#102a54);
+  color:white;
+}
+
+/* LOADER */
+#loader {
+  position:fixed;
+  width:100%;
+  height:100%;
+  background:#0b1d3a;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:999;
+}
+#loader img {
+  width:100px;
+  animation:pulse 1.5s infinite;
+}
+@keyframes pulse {
+  0%{transform:scale(1);}
+  50%{transform:scale(1.2);}
+  100%{transform:scale(1);}
+}
+
+/* HEADER */
+header {
+  display:flex;
+  justify-content:space-between;
+  padding:15px 20px;
+  background:rgba(255,255,255,0.1);
+  backdrop-filter: blur(10px);
+}
+
+/* SIDEBAR */
+#sidebar {
+  position:fixed;
+  left:-250px;
+  top:0;
+  width:250px;
+  height:100%;
+  background:#132f5c;
+  transition:0.3s;
+  padding-top:60px;
+}
+#sidebar a {
+  display:block;
+  padding:15px;
+  color:white;
+  text-decoration:none;
+}
+#sidebar a:hover { background:#1e4c8c; }
+
+button {
+  background:orange;
+  border:none;
+  padding:8px 12px;
+  color:white;
+  cursor:pointer;
+  border-radius:5px;
+}
+
+/* CONTENT */
+.content {
+  padding:20px;
+}
+
+/* CARD */
+.card {
+  background:rgba(255,255,255,0.08);
+  padding:20px;
+  border-radius:10px;
+  margin-bottom:20px;
+  backdrop-filter: blur(10px);
+}
+
+/* FLOAT BUTTONS */
+.float {
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+.float a {
+  padding:15px;
+  border-radius:50%;
+  color:white;
+  text-decoration:none;
+}
+.whatsapp { background:green; }
+.ai { background:orange; }
+
+/* CHATBOX */
+#chatbox {
+  position:fixed;
+  bottom:80px;
+  right:20px;
+  width:300px;
+  background:#1b3b6f;
+  border-radius:15px;
+  padding:10px;
+  display:none;
+  box-shadow:0 0 15px rgba(0,0,0,0.5);
+}
+#messages {
+  height:200px;
+  overflow:auto;
+  background:#102a54;
+  padding:10px;
+  border-radius:10px;
+  margin-bottom:10px;
+  font-size:14px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOADER -->
+<div id="loader">
+<img src="logo.png">
+</div>
+
+<header>
+<button onclick="toggleSidebar()">☰</button>
+<h3>ZASA</h3>
+<button onclick="toggleLang()">EN/SW</button>
+</header>
+
+<!-- SIDEBAR -->
+<div id="sidebar">
+<a onclick="show('home')">Home</a>
+<a onclick="show('goals')">Malengo</a>
+<a onclick="show('register')">Kujisajili</a>
+<a onclick="show('constitution')">Katiba</a>
+<a onclick="show('contact')">Contact</a>
+</div>
+
+<div class="content">
+
+<div id="home" class="card">
+<h2>UTANGULIZI</h2>
+<p>
+Zanzibar Aerospace Students Association (ZASA) ni taasisi ya wanafunzi iliyoanzishwa na wanafunzi wa Karume Institute of Science and Technology (KIST) kwa lengo la kuhamasisha, kuelimisha, na kukuza uelewa wa masuala ya anga.
+</p>
+
+<h3>DIRA</h3>
+<p>Kuwa taasisi inayoongoza Afrika Mashariki katika sekta ya anga.</p>
+
+<h3>DHIMA</h3>
+<p>Kutoa elimu, hamasa, na fursa kwa vijana katika aerospace.</p>
+</div>
+
+<div id="goals" class="card" style="display:none;">
+<ul>
+<li>Kukuza uelewa wa aerospace</li>
+<li>Kutoa semina na warsha</li>
+<li>Kuunganisha wanafunzi na wataalamu</li>
+<li>Kuhamasisha ubunifu</li>
+</ul>
+</div>
+
+<div id="register" class="card" style="display:none;">
+<a href="form.pdf" download>📄 Pakua Fomu ya Kujiunga</a>
+<p id="maint">Huduma ipo kwenye matengenezo</p>
+</div>
+
+<div id="constitution" class="card" style="display:none;">
+<a href="katiba.pdf" download>📄 Download Katiba</a>
+</div>
+
+<div id="contact" class="card" style="display:none;">
+📞 0714095979
+</div>
+
+</div>
+
+<!-- FLOAT BUTTONS -->
+<div class="float">
+<a href="https://wa.me/255714095979" class="whatsapp">💬</a>
+<a href="#" class="ai" onclick="toggleChat()">🤖</a>
+</div>
+
+<!-- CHATBOX -->
+<div id="chatbox">
+<div style="font-weight:bold;margin-bottom:5px;">🤖 ZASA AI Help</div>
+
+<div id="messages"></div>
+
+<input id="userInput" placeholder="Andika swali..." style="width:70%;padding:8px;border:none;border-radius:5px;">
+<button onclick="sendMessage()">Send</button>
+</div>
+
+<script>
+
+// LOADER
+window.onload = ()=> document.getElementById("loader").style.display="none";
+
+// SIDEBAR
+function toggleSidebar(){
+  let s = document.getElementById("sidebar");
+  s.style.left = s.style.left === "0px" ? "-250px" : "0px";
+}
+
+// SECTION SWITCH
+function show(id){
+  document.querySelectorAll('.card').forEach(c=>c.style.display="none");
+  document.getElementById(id).style.display="block";
+}
+
+// LANGUAGE
+let lang="sw";
+function toggleLang(){
+  lang = lang==="sw"?"en":"sw";
+  document.getElementById("maint").innerText =
+    lang==="sw"?"Huduma ipo kwenye matengenezo":"Service under maintenance";
+}
+
+// CHATBOX
+function toggleChat(){
+  let c=document.getElementById("chatbox");
+  c.style.display=c.style.display==="block"?"none":"block";
+}
+
+// AI BOT (SMART LOCAL)
+function getAIResponse(input){
+  input = input.toLowerCase();
+
+  if(input.includes("zasa") || input.includes("what is zasa")){
+    return "ZASA ni Zanzibar Aerospace Students Association, taasisi ya wanafunzi wa KIST.";
+  }
+  if(input.includes("malengo") || input.includes("goals")){
+    return "Malengo ni kukuza elimu ya aerospace na kuunganisha wanafunzi.";
+  }
+  if(input.includes("jiunga") || input.includes("register")){
+    return "Pakua fomu kwenye sehemu ya Kujisajili.";
+  }
+  if(input.includes("contact") || input.includes("mawasiliano")){
+    return "Piga simu 0714095979 au WhatsApp.";
+  }
+  if(input.includes("hello") || input.includes("hi")){
+    return "Karibu ZASA! Naweza kukusaidia nini?";
+  }
+
+  return "Samahani, tafadhali uliza kuhusu ZASA, malengo au usajili.";
+}
+
+function sendMessage(){
+  let input=document.getElementById("userInput").value;
+  let box=document.getElementById("messages");
+
+  box.innerHTML += "<div><b>You:</b> "+input+"</div>";
+
+  let reply=getAIResponse(input);
+
+  setTimeout(()=>{
+    box.innerHTML += "<div><b>AI:</b> "+reply+"</div>";
+  },500);
+}
+
+</script>
+
+</body>
+</html>
