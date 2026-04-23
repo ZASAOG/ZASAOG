@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZASA</title>
+
+<style>
+body{
+  margin:0;
+  font-family:Arial;
+  background:linear-gradient(#0a1f44,#0c2d63);
+  color:white;
+}
+
+/* LOADING */
+#loader{
+  position:fixed;
+  width:100%;
+  height:100%;
+  background:#0a1f44;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:999;
+}
+#loader h1{
+  animation:blink 1s infinite;
+}
+@keyframes blink{
+  0%{opacity:0.2}
+  50%{opacity:1}
+  100%{opacity:0.2}
+}
+
+/* MENU */
+.menu-btn{
+  position:fixed;
+  top:20px;
+  left:20px;
+  background:orange;
+  border:none;
+  padding:12px;
+  border-radius:8px;
+}
+
+.lang-btn{
+  position:fixed;
+  top:20px;
+  right:20px;
+  background:orange;
+  border:none;
+  padding:12px;
+  border-radius:8px;
+}
+
+.sidebar{
+  position:fixed;
+  left:-250px;
+  top:0;
+  width:250px;
+  height:100%;
+  background:#111;
+  padding-top:60px;
+  transition:0.3s;
+}
+.sidebar a{
+  display:block;
+  padding:15px;
+  color:white;
+  text-decoration:none;
+}
+.sidebar a:hover{
+  background:orange;
+}
+
+/* LOGO */
+.logo{
+  display:block;
+  margin:80px auto 10px;
+  width:180px;
+  animation:glow 2s infinite alternate;
+}
+@keyframes glow{
+  from{filter:drop-shadow(0 0 10px #00c3ff);}
+  to{filter:drop-shadow(0 0 25px #ff6a00);}
+}
+
+/* CONTENT */
+.container{
+  padding:20px;
+  text-align:center;
+}
+
+.card{
+  background:rgba(255,255,255,0.1);
+  padding:20px;
+  border-radius:10px;
+  margin-top:20px;
+}
+
+/* AI BUTTON */
+.ai-btn{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:#00c853;
+  border:none;
+  padding:15px;
+  border-radius:50%;
+}
+
+#chatBox{
+  position:fixed;
+  bottom:80px;
+  right:20px;
+  width:260px;
+  background:#222;
+  padding:10px;
+  border-radius:10px;
+  display:none;
+}
+#chatBox input{
+  width:100%;
+  padding:5px;
+}
+</style>
+</head>
+
+<body>
+
+<div id="loader">
+  <h1>Loading ZASA...</h1>
+</div>
+
+<button class="menu-btn" onclick="toggleMenu()">☰</button>
+<button class="lang-btn" onclick="toggleLang()">EN</button>
+
+<div class="sidebar" id="menu">
+  <a onclick="showSection('home')">Home</a>
+  <a onclick="showSection('masharti')">Masharti</a>
+  <a onclick="showSection('malengo')">Malengo</a>
+  <a onclick="showSection('jiunge')">Kujiunga</a>
+  <a onclick="showSection('katiba')">Katiba</a>
+  <a onclick="showSection('contact')">Mawasiliano</a>
+</div>
+
+<img src="logo.jpeg" class="logo">
+
+<div class="container" id="content"></div>
+
+<button class="ai-btn" onclick="toggleChat()">💬</button>
+
+<div id="chatBox">
+  <div id="chatLog"></div>
+  <input type="text" placeholder="Uliza..." onkeydown="askAI(event)">
+</div>
+
+<script>
+let lang="sw";
+
+const data={
+sw:{
+home:"<div class='card'><h2>Kuhusu ZASA</h2>ZASA ni taasisi ya wanafunzi wa aerospace.</div>",
+masharti:"<div class='card'>Masharti ya kujiunga...</div>",
+malengo:"<div class='card'>Malengo ya ZASA...</div>",
+jiunge:"<div class='card'><button onclick='alert(\"Sehemu ipo kwenye matengenezo\")'>Jisajili Online</button></div>",
+katiba:"<div class='card'><a href='katiba.pdf.docx'>Pakua Katiba</a></div>",
+contact:"<div class='card'>0714095979</div>"
+},
+en:{
+home:"<div class='card'><h2>About ZASA</h2>ZASA is an aerospace student organization.</div>",
+masharti:"<div class='card'>Requirements...</div>",
+malengo:"<div class='card'>Goals...</div>",
+jiunge:"<div class='card'><button onclick='alert(\"Service under maintenance\")'>Join</button></div>",
+katiba:"<div class='card'><a href='katiba.pdf.docx'>Download</a></div>",
+contact:"<div class='card'>0714095979</div>"
+}
+};
+
+function showSection(x){
+document.getElementById("content").innerHTML=data[lang][x];
+}
+
+function toggleMenu(){
+let m=document.getElementById("menu");
+m.style.left=(m.style.left=="0px")?"-250px":"0px";
+}
+
+function toggleLang(){
+lang=(lang=="sw")?"en":"sw";
+document.querySelector(".lang-btn").innerText=(lang=="sw")?"EN":"SW";
+showSection("home");
+}
+
+function toggleChat(){
+let c=document.getElementById("chatBox");
+c.style.display=(c.style.display=="block")?"none":"block";
+}
+
+function askAI(e){
+if(e.key==="Enter"){
+let q=e.target.value;
+let res="Naweza kusaidia kuhusu ZASA tu.";
+document.getElementById("chatLog").innerHTML+="<div>"+q+"</div><div>"+res+"</div>";
+e.target.value="";
+}
+}
+
+setTimeout(()=>{
+document.getElementById("loader").style.display="none";
+showSection("home");
+},2000);
+</script>
+
+</body>
+</html>
